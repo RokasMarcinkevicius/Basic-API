@@ -22,7 +22,7 @@ namespace Tamro.Controllers
         }
 
         /// <summary>
-        /// GET (Read all) /users
+        /// GET (Read all) an user based on the following path - /users
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -34,7 +34,7 @@ namespace Tamro.Controllers
         }
 
         /// <summary>
-        /// GET (Read) /user/{id}
+        /// GET (Read) an user based on the following path - /user/{id}
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -52,7 +52,7 @@ namespace Tamro.Controllers
         }
 
         /// <summary>
-        /// POST (Create) /user
+        /// POST (Create) an user based on the following path - /user
         /// </summary>
         /// <param name="userDto"></param>
         /// <returns></returns>
@@ -78,7 +78,7 @@ namespace Tamro.Controllers
         }
 
         /// <summary>
-        /// DELETE /user/{id}
+        /// DELETE an user based on the following path - /user/{id}
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
