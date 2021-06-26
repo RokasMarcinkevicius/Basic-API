@@ -69,7 +69,7 @@ namespace Tamro.Controllers
             if (existingUser != null)
                 return Conflict();
 
-            var userToAdd = userDto.ToModel();//@class);
+            var userToAdd = userDto.ToModel();
             _dbContext.User.Add(userToAdd);
             await _dbContext.SaveChangesAsync();
             var updatedUserDto = userToAdd.ToDTO();
