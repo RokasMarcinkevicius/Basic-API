@@ -3,7 +3,7 @@ Visual Studio Code - https://code.visualstudio.com/download
 
 C# for Visual Studio Code (latest version) - https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp
 
-.NET Core 3.1 SDK or later - https://dotnet.microsoft.com/download/dotnet-core/3.1
+.NET Core 5.0 SDK or later - https://dotnet.microsoft.com/download/dotnet/5.0
 
 Unzip the repo, Open Visual Studio Code, select file -> Open Folder, select the unzipped repo.
 
