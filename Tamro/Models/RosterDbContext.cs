@@ -7,7 +7,7 @@ namespace Tamro.Models
     {
         public RosterDbContext(DbContextOptions<RosterDbContext> options) : base(options) { }
 
-        public DbSet<User> User { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
