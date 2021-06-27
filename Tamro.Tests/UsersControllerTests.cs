@@ -40,7 +40,7 @@ namespace Tamro.Tests
                     Email = "Rokas.m97@gmail.com",
                     Phone = "+37061957933"
                 };
-                _dbContext.User.Add(user);
+                _dbContext.Users.Add(user);
                 var user2 = new User
                 {
                     Id = 2,
@@ -49,7 +49,7 @@ namespace Tamro.Tests
                     Email = "Mscott@gmail.com",
                     Phone = "+37012345678"
                 };
-                _dbContext.User.Add(user2);
+                _dbContext.Users.Add(user2);
                 var user3 = new User
                 {
                     Id = 3,
@@ -58,7 +58,7 @@ namespace Tamro.Tests
                     Email = "Dschrute@gmail.com",
                     Phone = "+37012345678"
                 };
-                _dbContext.User.Add(user3);
+                _dbContext.Users.Add(user3);
                 var user4 = new User
                 {
                     Id = 4,
@@ -67,14 +67,14 @@ namespace Tamro.Tests
                     Email = "Jhalpert@gmail.com",
                     Phone = "+37012345678"
                 };
-                _dbContext.User.Add(user4);
+                _dbContext.Users.Add(user4);
                 _dbContext.SaveChanges();
             }
 
             public void Dispose()
             {
-                var users = _dbContext.User.ToArray();
-                _dbContext.User.RemoveRange(users);
+                var users = _dbContext.Users.ToArray();
+                _dbContext.Users.RemoveRange(users);
                 _dbContext.SaveChanges();
             }
         }
@@ -173,8 +173,8 @@ namespace Tamro.Tests
             {
                 // Clean-up (so it doesn't mess up other tests)
                 var dbContext = _factory.Services.GetRequiredService<RosterDbContext>();
-                var user = await dbContext.User.FindAsync(userDto.Id);
-                dbContext.User.Remove(user);
+                var user = await dbContext.Users.FindAsync(userDto.Id);
+                dbContext.Users.Remove(user);
                 await dbContext.SaveChangesAsync();
             }
         }
@@ -262,7 +262,7 @@ namespace Tamro.Tests
                 Name = "Jan",
                 Surname = "Levinson"
             };
-            dbContext.User.Add(user);
+            dbContext.Users.Add(user);
             await dbContext.SaveChangesAsync();
 
             // Act

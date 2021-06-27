@@ -11,17 +11,16 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Tamro.Models;
-
+using Tamro.Extensions;
 namespace Tamro
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IConfiguration _config;
+        public Startup(IConfiguration config)
         {
-            Configuration = configuration;
+            _config = config;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -33,12 +32,7 @@ namespace Tamro
                 options.JsonSerializerOptions.WriteIndented = true;
             });
             services.AddHealthChecks();
-            services.AddDbContext<RosterDbContext>(builder =>
-                builder.UseInMemoryDatabase("Roster"), ServiceLifetime.Singleton);
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "QuickStart", Version = "v1" });
-            });
+            services.AddApplicationServices(_config);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

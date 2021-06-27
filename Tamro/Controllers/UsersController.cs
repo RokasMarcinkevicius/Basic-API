@@ -29,7 +29,7 @@ namespace Tamro.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerator<UserDTO>>> GetAll()
         {
-            var users = await _dbContext.User.ToArrayAsync();
+            var users = await _dbContext.Users.ToArrayAsync();
             return Ok(users.Select(s => s.ToDTO()));
         }
 
@@ -43,7 +43,7 @@ namespace Tamro.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<UserDTO>> Get(int id)
         {
-            var user = await _dbContext.User.FindAsync(id);
+            var user = await _dbContext.Users.FindAsync(id);
 
             if (user == null)
                 return NotFound();
@@ -65,12 +65,12 @@ namespace Tamro.Controllers
             if (string.IsNullOrEmpty(userDto.Name))
                 return BadRequest();
 
-            var existingUser = await _dbContext.User.FindAsync(userDto.Id);
+            var existingUser = await _dbContext.Users.FindAsync(userDto.Id);
             if (existingUser != null)
                 return Conflict();
 
             var userToAdd = userDto.ToModel();
-            _dbContext.User.Add(userToAdd);
+            _dbContext.Users.Add(userToAdd);
             await _dbContext.SaveChangesAsync();
             var updatedUserDto = userToAdd.ToDTO();
 
@@ -87,11 +87,11 @@ namespace Tamro.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<UserDTO>> Delete(int id)
         {
-            var user = await _dbContext.User.FindAsync(id);
+            var user = await _dbContext.Users.FindAsync(id);
             if (user == null)
                 return NotFound();
 
-            _dbContext.User.Remove(user);
+            _dbContext.Users.Remove(user);
             await _dbContext.SaveChangesAsync();
             return Ok(user.ToDTO());
         }
@@ -111,7 +111,7 @@ namespace Tamro.Controllers
             if (userDto.Id != id || string.IsNullOrEmpty(userDto.Name))
                 return BadRequest();
 
-            var user = await _dbContext.User.FindAsync(id);
+            var user = await _dbContext.Users.FindAsync(id);
             if (user == null)
                 return NotFound();
 
